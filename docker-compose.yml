@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  postgres:
+    # Docker Hub image
+    image: postgres:14
+    container_name: postgres_robin
+    # Provide the password for postgres
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - '5432:5432'
+    volumes:
+      - './tmp/volumes/postgres:/var/lib/postgresql/data'
+#  Taken from: https://geshan.com.np/blog/2023/06/elasticsearch-docker/
+  elasticsearch:
+    image: elasticsearch:8.12.2
+    container_name: elasticsearch_robin
+    ports:
+      - 9200:9200
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
