@@ -1,6 +1,6 @@
 package dev.otee.robin.rest.dto;
 
-public record ErrorResponse(
-        String error
+public record UserExistsResponse(
+        Boolean exists
 ) implements Response{
 }
