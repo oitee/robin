@@ -12,17 +12,18 @@ public class Movie {
     String name;
     String slug;
     String description;
-    int avgRating;
+    Double avgRating;
     String tags;
     int releasedYear;
     String lang;
     OffsetDateTime createdAt;
 
-    public Movie(String name, String slug, String description, int avgRating, int releasedYear, String lang){
+    public Movie(String name, String slug, String description, String tags, int releasedYear, String lang){
         this.name = name;
         this. slug = slug;
         this.description = description;
-        this.avgRating = avgRating;
+        this.avgRating = 0.0D;
+        this.tags = tags;
         this.releasedYear = releasedYear;
         this.lang = lang;
         this.createdAt = OffsetDateTime.now();
@@ -44,7 +45,7 @@ public class Movie {
         return description;
     }
 
-    public int getAvgRating() {
+    public Double getAvgRating() {
         return avgRating;
     }
 

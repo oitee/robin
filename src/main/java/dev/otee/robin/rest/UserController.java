@@ -1,11 +1,11 @@
 package dev.otee.robin.rest;
 
 import dev.otee.robin.model.Users;
+import dev.otee.robin.rest.dto.CreateUserResponse;
 import dev.otee.robin.rest.dto.ErrorResponse;
 import dev.otee.robin.rest.dto.Response;
-import dev.otee.robin.rest.dto.CreateUserResponse;
 import dev.otee.robin.rest.dto.UserExistsResponse;
-import dev.otee.robin.service.MovieService;
+import dev.otee.robin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ import java.util.Optional;
 @Controller
 public class UserController {
     @Autowired
-    private MovieService service;
+    private UserService service;
 
     @GetMapping("/add/{name}")
     @ResponseBody
