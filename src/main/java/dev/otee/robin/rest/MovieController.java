@@ -2,10 +2,7 @@ package dev.otee.robin.rest;
 
 import dev.otee.robin.Utils;
 import dev.otee.robin.model.Movie;
-import dev.otee.robin.rest.dto.CreateMovieResponse;
-import dev.otee.robin.rest.dto.ErrorResponse;
-import dev.otee.robin.rest.dto.MovieCreationRequest;
-import dev.otee.robin.rest.dto.Response;
+import dev.otee.robin.rest.dto.*;
 import dev.otee.robin.service.MovieService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,5 +39,16 @@ public class MovieController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("Movie could not be added"));
         }
         return ResponseEntity.status(HttpStatus.OK).body(new CreateMovieResponse(createdMovie.get()));
+    }
+
+    @GetMapping("/movie/{slug}")
+    @ResponseBody
+    public ResponseEntity<Response> getMovie(@PathVariable String slug){
+        Optional<Movie> movie = service.getMovie(slug);
+        if (movie.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse("Movie not found"));
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(new GetMovieResponse(movie.get()));
+
     }
 }

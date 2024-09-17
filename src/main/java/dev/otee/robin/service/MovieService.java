@@ -34,4 +34,12 @@ public class MovieService {
         List<Movie> movies = movieRepository.findBySlug(slug);
         return !movies.isEmpty();
     }
+
+    public Optional<Movie> getMovie(String slug){
+        List<Movie> movies = movieRepository.findBySlug(slug);
+        if (movies.isEmpty()){
+            return Optional.empty();
+        }
+        return Optional.of(movies.getFirst());
+    }
 }
