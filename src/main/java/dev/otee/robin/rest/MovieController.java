@@ -72,7 +72,7 @@ public class MovieController {
         if(ratingExists){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("This user already has a rating for this movie"));
         }
-        service.addRating(user.get().getId(), movie.get(), ratingRequest.rating());
-        return ResponseEntity.status(HttpStatus.OK).body(new GenericMovieResponse(movie.get()));
+        Movie updatedMovie = service.addRating(user.get().getId(), movie.get(), ratingRequest.rating());
+        return ResponseEntity.status(HttpStatus.OK).body(new GenericMovieResponse(updatedMovie));
     }
 }

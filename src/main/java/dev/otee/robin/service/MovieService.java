@@ -53,17 +53,16 @@ public class MovieService {
         return !rating.isEmpty();
     }
 
-    public Rating addRating(Integer userId, Movie movie, Double userRating){
+    public Movie addRating(Integer userId, Movie movie, Double userRating){
         List<Rating> ratings = ratingRepository.findByMovieId(movie.getId());
         int totalReviews = ratings.size();
-        //TODO: Add updated Average rating in movie entity
-        Double newAvgRating;
 
+        Double newAvgRating;
         newAvgRating = (movie.getAvgRating() + userRating) / (totalReviews + 1);
 
+        Movie updatedMovie = movieRepository.updateAvgRating(newAvgRating, movie.getSlug()).getFirst();
         Rating rating = new Rating(userId, movie.getId(), userRating);
-
-        return ratingRepository.save(rating);
-
+        ratingRepository.save(rating);
+        return updatedMovie;
     }
 }
