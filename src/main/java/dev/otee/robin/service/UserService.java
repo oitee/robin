@@ -30,4 +30,12 @@ public class UserService {
         List<Users> existingUser = userRepository.findByUsername(username);
         return !existingUser.isEmpty();
     }
+
+    public Optional<Users> getUser(String username){
+        List<Users> user = userRepository.findByUsername(username);
+        if(user.isEmpty()){
+            return Optional.empty();
+        }
+        return Optional.of(user.getFirst());
+    }
 }

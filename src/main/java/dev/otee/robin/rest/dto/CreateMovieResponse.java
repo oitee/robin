@@ -15,15 +15,15 @@ public record CreateMovieResponse(
         String language,
         OffsetDateTime createdAt
 ) implements Response {
-    public CreateMovieResponse(Movie createdMovie) {
-        this(createdMovie.getId(),
-                createdMovie.getSlug(),
-                createdMovie.getName(),
-                createdMovie.getAvgRating(),
-                createdMovie.getDescription(),
-                createdMovie.getTags().split(","),
-                createdMovie.getReleasedYear(),
-                createdMovie.getLang(),
-                createdMovie.getCreatedAt());
+    public CreateMovieResponse(Movie movie) {
+        this(movie.getId(),
+                movie.getSlug(),
+                movie.getName(),
+                movie.getAvgRating(),
+                movie.getDescription(),
+                movie.getTags().split(","),
+                movie.getReleasedYear(),
+                movie.getLang(),
+                movie.getCreatedAt());
     }
 }

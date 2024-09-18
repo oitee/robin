@@ -4,7 +4,7 @@ import dev.otee.robin.model.Movie;
 
 import java.time.OffsetDateTime;
 
-public record GetMovieResponse(
+public record GenericMovieResponse(
         Integer id,
         String slug,
         String name,
@@ -15,7 +15,7 @@ public record GetMovieResponse(
         String language,
         OffsetDateTime createdAt
 ) implements Response {
-    public GetMovieResponse(Movie movie){
+    public GenericMovieResponse(Movie movie){
         this (movie.getId(),
                 movie.getSlug(),
                 movie.getName(),
